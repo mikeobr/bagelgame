@@ -1,5 +1,5 @@
 # bagelgame
-Node and npm must be installed
+nodejs and npm must be installed
 
 To build and run server:
 npm install
