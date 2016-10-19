@@ -1,4 +1,6 @@
 # bagelgame
+Node and npm must be installed
 
-To run server:
-python -m SimpleHTTPServer
+To build and run server:
+npm install
+npm start
