@@ -5,6 +5,6 @@
     "phaser": ">=2.6.2"
   },
   "scripts": {
-    "start": "nodejs node_modules/http-server/bin/http-server"
+    "start": "node node_modules/http-server/bin/http-server"
   } 
 }
