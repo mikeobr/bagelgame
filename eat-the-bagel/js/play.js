@@ -42,6 +42,8 @@ var playState = {
 
 	createPacman: function() {
 		this.pacman = game.add.sprite(0, 0, 'pacman');
+		this.pacman.scale.setTo(this.cellSize/game.cache.getImage('pacman').width,
+			this.cellSize/game.cache.getImage('pacman').height);
 		this.pacman.speed = 150;
 		game.physics.arcade.enable(this.pacman);
 		this.pacman.body.collideWorldBounds = true;

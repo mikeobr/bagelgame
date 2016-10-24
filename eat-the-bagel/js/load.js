@@ -1,8 +1,8 @@
 var loadState = {
 	preload: function() {
-	game.load.image('baddie', 'assets/diamond.png', 32, 32);
-	game.load.image('bagel', 'assets/star.png', 32, 32);
-	game.load.spritesheet('pacman', 'assets/baddie.png', 32, 32);
+	game.load.image('baddie', 'assets/bad-broccoli-small.png');
+	game.load.image('bagel', 'assets/bagel-small.png');
+	game.load.spritesheet('pacman', '../assets/hungry-mike.png');
 	game.load.image('wall', 'assets/wall.png');
 	},
 
