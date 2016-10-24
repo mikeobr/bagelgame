@@ -1,22 +1,12 @@
 var playState = {
 
-	bagels: 0,
-	vegetables: 0,
-	platforms: 0,
-	total: 0,
- 	livesText: "",
-	livesLeft: 3,
-	levelText: "",
-	totalText: "",
-	level: 1,
-
 	create: function() {
-		this.initializeBackgroundandTable;
-		this.initializeScore;
-		this.createPlayer;
-		this.initializeBagels;
-		this.initializeVegetables;
-		this.killRottenFood;
+		this.initializeBackgroundandTable();
+		this.initializeScore();
+		this.createPlayer();
+		this.initializeBagels();
+		this.initializeVegetables();
+		this.killRottenFood();
 	},
 
 	initializeBackgroundandTable: function() {
@@ -24,14 +14,17 @@ var playState = {
 		game.add.sprite(0, 0, 'kitchen');
 
 		//platforms
-		platforms = game.add.group();
-		platforms.enableBody = true;
-		var table = platforms.create(0, game.world.height - 64, 'table');
-		table.scale.setTo(2, 2);
-		table.body.immovable = true;
+		this.platforms = game.add.group();
+		this.platforms.enableBody = true;
+		this.table = this.platforms.create(0, game.world.height - 64, 'table');
+		this.table.scale.setTo(2, 2);
+		this.table.body.immovable = true;
 	},
 
 	initializeScore: function() {
+		this.total = 0;
+		this.livesLeft = 3;
+		this.level = 1;
 		this.totalText = game.add.text(16, 112, 'total: 0', { fontSize: '32px', fill: '#000' });
     	this.livesText = game.add.text(16, 16, 'lives: 3', { fontSize: '32px', fill: '#000' });
     	this.levelText = game.add.text(16, 64, 'level: 1', { fontSize: '32px', fill: '#000' });
@@ -40,29 +33,29 @@ var playState = {
 	initializeBagels: function() {
 		this.bagels = game.add.group();
 		this.bagels.enableBody = true;
-		this.createBagels;
+		this.createBagels();
 		game.time.events.repeat(Phaser.Timer.SECOND * 2, 100, this.createBagels, this);
 	},
 
 	initializeVegetables: function() {
 		this.vegetables = game.add.group();
    		this.vegetables.enableBody = true;
-   		this.createVegetables;
+   		this.createVegetables();
     	game.time.events.repeat(Phaser.Timer.SECOND * 4, 1000, this.createVegetables, this);
 	},
 
 	createPlayer: function() {
-		player = game.add.sprite(35, game.world.height - 150, 'dude');
-		game.physics.arcade.enable(player);
+		this.player = game.add.sprite(35, game.world.height - 150, 'dude');
+		game.physics.arcade.enable(this.player);
 		
 		//  Player physics properties. Give the little guy a slight bounce.
-    	player.body.bounce.y = 0.2;
-    	player.body.gravity.y = 800;
-    	player.body.collideWorldBounds = true;
+    	this.player.body.bounce.y = 0.2;
+    	this.player.body.gravity.y = 800;
+    	this.player.body.collideWorldBounds = true;
 
     	//  Our two animations, walking left and right.
-    	player.animations.add('left', [0, 1, 2, 3], 10, true);
-    	player.animations.add('right', [5, 6, 7, 8], 10, true);
+    	this.player.animations.add('left', [0, 1, 2, 3], 10, true);
+    	this.player.animations.add('right', [5, 6, 7, 8], 10, true);
 	},
 
 	createBagels: function() {
@@ -73,10 +66,8 @@ var playState = {
 	},
 
 	createVegetables: function() {
-		this.vegetables = game.add.group();
-		this.vegetables.enableBody = true;
 		var veges = ['vege1','vege2','vege3'];
-		for (var i = 0; i<=this.level; i++) {
+		for (var i = 0; i <= this.level; i++) {
 			var veg = this.vegetables.create(-50 + game.world.randomX, i*5, veges[game.rnd.between(0, 2)]);
 			veg.body.gravity.y = this.level + 5;
 		}
@@ -91,36 +82,36 @@ var playState = {
 	},
 
 	update: function() {
-    	game.physics.arcade.overlap(player, this.bagels, this.collectBagel, null, this);
-    	game.physics.arcade.overlap(player, this.vegetables, this.suicide, null, this);
+    	game.physics.arcade.overlap(this.player, this.bagels, this.collectBagel, null, this);
+    	game.physics.arcade.overlap(this.player, this.vegetables, this.suicide, null, this);
     	//  Collide the player with the platform
-    	var hitPlatform = game.physics.arcade.collide(player, platforms);
-    	this.controlPlayer(player);
+    	this.hitPlatform = game.physics.arcade.collide(this.player, this.platforms);
+    	this.controlPlayer();
 	},
 
-	controlPlayer: function(player) {
+	controlPlayer: function() {
 		cursors = game.input.keyboard.createCursorKeys();
 
-    	//  Reset the players velocity (movement)
-    	player.body.velocity.x = 0;
+		//  Reset the players velocity (movement)
+    	this.player.body.velocity.x = 0;
 
     	if (cursors.left.isDown) {
         	//  Move to the left
-        	player.body.velocity.x = -150;
-        	player.animations.play('left');
+        	this.player.body.velocity.x = -150;
+        	this.player.animations.play('left');
     	} else if (cursors.right.isDown) {
     	    //  Move to the right
-    	    player.body.velocity.x = 150;
-    	    player.animations.play('right');
+    	    this.player.body.velocity.x = 150;
+    	    this.player.animations.play('right');
    		} else {
     	    //  Stand still
-    	    player.animations.stop();
-    	    player.frame = 4;
+    	    this.player.animations.stop();
+    	    this.player.frame = 4;
     	}
 
     	//  Allow the player to jump if they are touching the ground.
-    	if (cursors.up.isDown && player.body.touching.down && hitPlatform) {
-    	    player.body.velocity.y = -550;
+    	if (cursors.up.isDown && this.player.body.touching.down && this.hitPlatform) {
+    	    this.player.body.velocity.y = -550;
     	}
 	},
 
@@ -139,7 +130,7 @@ var playState = {
     	this.livesText.text = 'Lives left: ' + this.livesLeft;
     	if (this.livesLeft == 0) {
     		this.livesText.text = 'GAME OVER!';
-    		player.kill();
+    		this.player.kill();
     		this.win();
     	}
 	},
