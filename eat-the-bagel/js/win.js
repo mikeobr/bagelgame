@@ -3,6 +3,8 @@ var winState = {
 		emitter = game.add.emitter(game.world.centerX, 0, 300);
 		emitter.makeParticles('bagel');
 		emitter.start(false, 5000, 250);
+		emitter.width = 100;
+		emitter.setScale(0.1, 0.3, 0.1, 0.3, 6000);
 		youWinText = game.add.text(game.world.centerX, game.world.centerY,
 			"YOU WIN!", {font: '100px RetroscapeRegular', fill: '#ff00ff'});
 		youWinText.anchor.setTo(0.5, 0.5);

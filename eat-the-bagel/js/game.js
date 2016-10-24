@@ -4,5 +4,3 @@ game.state.add('play', playState);
 game.state.add('win', winState);
 game.state.add('lose', loseState);
 game.state.start('load');
-
-// use bagel stuff!!!

@@ -10,7 +10,7 @@
 <body>
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload});
 
 var WebFontConfig = {
 
@@ -27,13 +27,6 @@ function preload() {
 	game.load.script("webfont", "//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js");
 	game.load.image('hungry-mike', 'assets/hungry-mike.png');
 	game.load.image('bagel', 'assets/bagel.png');
-}
-
-function create() {
-
-	game.add.sprite(625, 350, 'hungry-mike');
-	bagel = game.add.sprite(600, 425, 'bagel');
-	bagel.scale.setTo(0.1, 0.1);
 }
 
 function createText() {
@@ -71,6 +64,14 @@ function createText() {
 	bagelMissionText.events.onInputDown.add(goToBagelGame, {url: 'feed-mike'});
 	eatTheBagelText.events.onInputDown.add(goToBagelGame, {url: 'eat-the-bagel'});
 	dodgeTheVeggiesText.events.onInputDown.add(goToBagelGame, {url: 'dont-eat-vegetables'});
+
+	createSprites();
+}
+
+function createSprites() {
+	game.add.sprite(630, 350, 'hungry-mike');
+	bagel = game.add.sprite(605, 425, 'bagel');
+	bagel.scale.setTo(0.1, 0.1);
 }
 
 

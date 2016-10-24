@@ -173,7 +173,7 @@ var playState = {
 	},
 
 	createBagel: function(xPos, yPos) {
-		this.bagel = game.add.sprite(xPos, yPos, 'bagel');
+		this.bagel = game.add.sprite(xPos, yPos, 'bagel-small');
 		game.physics.arcade.enable(this.bagel);
 		this.bagel.body.immovable = true;
 	},
