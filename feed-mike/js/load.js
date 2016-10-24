@@ -13,7 +13,7 @@ var loadState = {
     game.load.image('bagel', 'assets/bagel-small.png');
     game.load.image('weapoon', 'assets/knife.png');
     game.load.image('baddieWeapoon', 'assets/flame.png');
-    game.load.image('player', 'assets/rocket.png');
+    game.load.image('player', '../assets/marissa.png');
   },
 
   create: function() {
