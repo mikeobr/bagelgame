@@ -58,6 +58,6 @@ var endState = {
 
   backToMenu: function() {
     var host = window.location.hostname;
-    window.location.href = 'http://' + host + ':8000/bagelgame';
+    window.location.href = 'http://' + host + ':8000';
   }
 }

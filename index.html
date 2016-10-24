@@ -17,7 +17,7 @@ var WebFontConfig = {
 	active: function() {
 		game.time.events.add(Phaser.Timer.SECOND, createText, this);
 	},
-	
+
 	google: {
 		families: ['Press Start 2P']
 	}
@@ -68,14 +68,14 @@ function createText() {
 	eatTheBagelText.inputEnabled = true;
 	dodgeTheVeggiesText.inputEnabled = true;
 	bagelDriveText.events.onInputDown.add(goToBagelGame, {url: 'bagel-drive'});
-	bagelMissionText.events.onInputDown.add(goToBagelGame, {url: 'bagel-mission'});
+	bagelMissionText.events.onInputDown.add(goToBagelGame, {url: 'feed-mike'});
 	eatTheBagelText.events.onInputDown.add(goToBagelGame, {url: 'eat-the-bagel'});
 	dodgeTheVeggiesText.events.onInputDown.add(goToBagelGame, {url: 'dont-eat-vegetables'});
 }
 
 
 function goToBagelGame() {
-	window.location.href = this.url;	
+	window.location.href = this.url;
 }
 
 

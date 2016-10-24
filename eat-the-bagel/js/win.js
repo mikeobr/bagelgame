@@ -21,16 +21,16 @@ var winState = {
 			"QUIT", {font: '80px RetroscapeRegular', fill: '#ff0'});
 		quitText.anchor.setTo(0.5, 0.5);
 		quitText.inputEnabled = true;
-		quitText.events.onInputDown.add(this.endGame, this);		
+		quitText.events.onInputDown.add(this.endGame, this);
 	},
 
 	startGame: function() {
 		game.baddieSpeed *= 1.1;
 		game.level += 1;
 		game.state.start('play');
-	}, 
+	},
 	endGame: function() {
 		var host = window.location.hostname;
-		window.location.href = 'http://' + host + ':8000/bagelgame';
+		window.location.href = 'http://' + host + ':8000';
 	}
 }
