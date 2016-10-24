@@ -14,6 +14,7 @@ var playState = {
 
   create: function() {
     this.score = 0;
+    game.world.alpha = 1;
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -26,15 +27,11 @@ var playState = {
     this.player.body.collideWorldBounds = true;
 
     this.vecnaPeople = this.setupPeople('mike', 10, 60);
-    this.vecnaPeople.setAll('scale.x', .4);
-    this.vecnaPeople.setAll('scale.y', .4);
     this.bagels = this.setupBulletOptions('bagel', 21);
     this.weapoons = this.setupBulletOptions('weapoon', 21);
     this.setupCurrentBullets(this.bagels);
 
     this.baddies = this.setupPeople('baddie', 10, 60);
-    this.baddies.setAll('scale.x', .06);
-    this.baddies.setAll('scale.y', .06);
     this.baddieWeapoons = this.setupBulletOptions('baddieWeapoon', 10);
   },
 
@@ -144,7 +141,6 @@ var playState = {
       baddie.body.bounce.x = 1;
       baddie.body.velocity.x = game.rnd.between(-60, 60);
       baddie.body.collideWorldBounds = true;
-      baddie.scale.setTo(.05, .05);
       this.nextBaddieArriveTime = game.time.now + this.baddieArriveRate;
     }
   },

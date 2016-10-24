@@ -38,9 +38,9 @@ var loseState = {
 		game.baddieSpeed *= 1.1;
 		game.level += 1;
 		game.state.start('load');
-	}, 
+	},
 	endGame: function() {
 		var host = window.location.hostname;
-		window.location.href = 'http://' + host + ':8000/bagelgame';
+		window.location.href = 'http://' + host + ':8000';
 	}
 }

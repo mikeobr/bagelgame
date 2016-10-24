@@ -3,6 +3,8 @@ var winState = {
 		emitter = game.add.emitter(game.world.centerX, 0, 300);
 		emitter.makeParticles('bagel');
 		emitter.start(false, 5000, 250);
+		emitter.width = 100;
+		emitter.setScale(0.1, 0.3, 0.1, 0.3, 6000);
 		youWinText = game.add.text(game.world.centerX, game.world.centerY,
 			"YOU WIN!", {font: '100px RetroscapeRegular', fill: '#ff00ff'});
 		youWinText.anchor.setTo(0.5, 0.5);
@@ -21,16 +23,16 @@ var winState = {
 			"QUIT", {font: '80px RetroscapeRegular', fill: '#ff0'});
 		quitText.anchor.setTo(0.5, 0.5);
 		quitText.inputEnabled = true;
-		quitText.events.onInputDown.add(this.endGame, this);		
+		quitText.events.onInputDown.add(this.endGame, this);
 	},
 
 	startGame: function() {
 		game.baddieSpeed *= 1.1;
 		game.level += 1;
 		game.state.start('play');
-	}, 
+	},
 	endGame: function() {
 		var host = window.location.hostname;
-		window.location.href = 'http://' + host + ':8000/bagelgame';
+		window.location.href = 'http://' + host + ':8000';
 	}
 }
