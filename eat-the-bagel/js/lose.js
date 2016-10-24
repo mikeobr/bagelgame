@@ -41,6 +41,6 @@ var loseState = {
 	}, 
 	endGame: function() {
 		var host = window.location.hostname;
-		window.location.href = 'http://' + host + ':8000/codeathon';
+		window.location.href = 'http://' + host + ':8000/bagelgame';
 	}
 }

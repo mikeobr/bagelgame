@@ -8,7 +8,7 @@ var loadState = {
 
 	create: function() {
 		game.physics.startSystem(Phaser.Physics.P2JS);
-		game.baddieSpeed = 125;
+		game.baddieSpeed = 130;
 		game.level = 1;
 		this.startCountDown();
 	},

@@ -1,6 +1,84 @@
-Hello world
+<!doctype html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8" />
+        <title>#bagels4ever</title>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
 
-<p>
-  Have you ever wanted to drive a bagel!
-  <a href="/games/bageldrive.html">BAGEL DRIVE</a>
-</p>
+
+</head>
+<body>
+<script type="text/javascript">
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+
+var WebFontConfig = {
+
+	active: function() {
+		game.time.events.add(Phaser.Timer.SECOND, createText, this);
+	},
+	
+	google: {
+		families: ['Press Start 2P']
+	}
+}
+
+function preload() {
+	game.load.script("webfont", "//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js");
+	game.load.image('hungry-mike', 'assets/hungry-mike.png');
+	game.load.image('bagel', 'assets/bagel.png');
+}
+
+function create() {
+
+	game.add.sprite(625, 350, 'hungry-mike');
+	bagel = game.add.sprite(600, 425, 'bagel');
+	bagel.scale.setTo(0.1, 0.1);
+}
+
+function createText() {
+	mainMenuText = game.add.text(game.world.centerX, 150, "MAIN MENU", {fill: '#fff'});
+	mainMenuText.font = 'Press Start 2P';
+	mainMenuText.fontSize = '40px';
+
+	bagelDriveText = game.add.text(game.world.centerX, 225, "DRIVE THE BAGELMOBILE", {fill: '#fff'});
+	bagelDriveText.font = 'Press Start 2P';
+	bagelDriveText.fontSize = '25px';
+
+	bagelMissionText = game.add.text(game.world.centerX, 300, "FEED HUNGRY MIKE", {font: '25px Press Start 2P', fill: '#fff'});
+	bagelMissionText.font = 'Press Start 2P';
+	bagelMissionText.fontSize = '25px';
+
+	eatTheBagelText = game.add.text(game.world.centerX, 375, "EAT YOUR BAGEL", {fill: '#fff'});
+	eatTheBagelText.font = 'Press Start 2P';
+	eatTheBagelText.fontSize = '25px';
+
+	dodgeTheVeggiesText = game.add.text(game.world.centerX, 450, "DODGE THE VEGGIES", {fill: '#fff'});
+	dodgeTheVeggiesText.font = 'Press Start 2P';
+	dodgeTheVeggiesText.fontSize = '25px';
+
+	// set anchors and input events
+	mainMenuText.anchor.setTo(0.5, 0.5);
+	bagelDriveText.anchor.setTo(0.5, 0.5);
+	bagelMissionText.anchor.setTo(0.5, 0.5);
+	eatTheBagelText.anchor.setTo(0.5, 0.5);
+	dodgeTheVeggiesText.anchor.setTo(0.5, 0.5);
+	bagelDriveText.inputEnabled = true;
+	bagelMissionText.inputEnabled = true;
+	eatTheBagelText.inputEnabled = true;
+	dodgeTheVeggiesText.inputEnabled = true;
+	bagelDriveText.events.onInputDown.add(goToBagelGame, {url: 'bagel-drive'});
+	bagelMissionText.events.onInputDown.add(goToBagelGame, {url: 'bagel-mission'});
+	eatTheBagelText.events.onInputDown.add(goToBagelGame, {url: 'eat-the-bagel'});
+	dodgeTheVeggiesText.events.onInputDown.add(goToBagelGame, {url: 'dont-eat-vegetables'});
+}
+
+
+function goToBagelGame() {
+	window.location.href = this.url;	
+}
+
+
+</script>
+</body>
+</html>
