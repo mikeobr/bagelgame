@@ -23,16 +23,18 @@ var playState = {
 
     this.player = game.add.sprite(32, game.world.height - 100, 'player');
     game.physics.arcade.enable(this.player);
-    this.player.animations.add('left', [0, 1, 2, 3], 10, true);
-    this.player.animations.add('right', [5, 6, 7, 8], 10, true);
     this.player.body.collideWorldBounds = true;
 
-    this.vecnaPeople = this.setupPeople('vecnaGuy', 10, 60);
+    this.vecnaPeople = this.setupPeople('mike', 10, 60);
+    this.vecnaPeople.setAll('scale.x', .4);
+    this.vecnaPeople.setAll('scale.y', .4);
     this.bagels = this.setupBulletOptions('bagel', 21);
     this.weapoons = this.setupBulletOptions('weapoon', 21);
     this.setupCurrentBullets(this.bagels);
 
     this.baddies = this.setupPeople('baddie', 10, 60);
+    this.baddies.setAll('scale.x', .06);
+    this.baddies.setAll('scale.y', .06);
     this.baddieWeapoons = this.setupBulletOptions('baddieWeapoon', 10);
   },
 
@@ -93,13 +95,8 @@ var playState = {
     }
     if(cursors.left.isDown) {
       this.player.body.velocity.x = -this.playerSpeed;
-      this.player.animations.play('left');
     } else if (cursors.right.isDown) {
       this.player.body.velocity.x = this.playerSpeed;
-      this.player.animations.play('right');
-    } else {
-      this.player.animations.stop();
-      this.player.frame = 4;
     }
     this.baddieShooting();
     this.baddieComing();
@@ -147,6 +144,7 @@ var playState = {
       baddie.body.bounce.x = 1;
       baddie.body.velocity.x = game.rnd.between(-60, 60);
       baddie.body.collideWorldBounds = true;
+      baddie.scale.setTo(.05, .05);
       this.nextBaddieArriveTime = game.time.now + this.baddieArriveRate;
     }
   },

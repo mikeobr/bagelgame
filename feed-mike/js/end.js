@@ -9,8 +9,8 @@ var endState = {
     game.add.tween(game.world).to( { alpha: 1 }, 2000, "Linear", true);
 
     var gameOverText = game.add.text(game.world.centerX, 200, this.text);
-    gameOverText.font = 'Orbitron';
-    gameOverText.fontSize = 80;
+    gameOverText.font = 'Press Start 2P';
+    gameOverText.fontSize = 72;
     gameOverText.fontWeight = 'bold';
     gameOverText.stroke = '#ffffff';
     gameOverText.strokeThickness = 4;
@@ -58,6 +58,6 @@ var endState = {
 
   backToMenu: function() {
     var host = window.location.hostname;
-    window.location.href = 'http://' + host + ':8000/codeathon';
+    window.location.href = 'http://' + host + ':8000/bagelgame';
   }
 }
