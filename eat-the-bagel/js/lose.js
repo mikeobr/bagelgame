@@ -5,7 +5,7 @@ var loseState = {
 		for (i = 0; i < 50; i ++) {
 			this.baddies.create(game.world.randomX, game.world.randomY, 'baddie');
 		}
-		game.time.events.repeat(Phaser.Timer.SECOND * 0.5, 20, this.tintBaddies, this);
+		game.time.events.loop(Phaser.Timer.SECOND * 0.5, this.tintBaddies, this);
 		youLoseText = game.add.text(game.world.centerX, game.world.centerY,
 			"YOU LOSE", {font: '100px RetroscapeRegular', fill: '#ff0000'});
 		youLoseText.anchor.setTo(0.5, 0.5);

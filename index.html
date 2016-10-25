@@ -11,6 +11,7 @@
 <script type="text/javascript">
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload});
+var menuSprites;
 
 var WebFontConfig = {
 
@@ -35,23 +36,23 @@ function preload() {
 function createText() {
 	createSprites();
 
-	mainMenuText = game.add.text(game.world.centerX, 150, "MAIN MENU", {fill: '#fff'});
+	mainMenuText = game.add.text(game.world.centerX, 100, "MAIN MENU", {fill: '#fff'});
 	mainMenuText.font = 'Press Start 2P';
 	mainMenuText.fontSize = '40px';
 
-	bagelDriveText = game.add.text(game.world.centerX, 225, "DRIVE THE BAGELMOBILE", {fill: '#fff'});
+	bagelDriveText = game.add.text(game.world.centerX, 175, "DRIVE THE BAGELMOBILE", {fill: '#fff'});
 	bagelDriveText.font = 'Press Start 2P';
 	bagelDriveText.fontSize = '25px';
 
-	bagelMissionText = game.add.text(game.world.centerX, 300, "FEED HUNGRY MIKE", {font: '25px Press Start 2P', fill: '#fff'});
+	bagelMissionText = game.add.text(game.world.centerX, 250, "FEED HUNGRY MIKE", {font: '25px Press Start 2P', fill: '#fff'});
 	bagelMissionText.font = 'Press Start 2P';
 	bagelMissionText.fontSize = '25px';
 
-	eatTheBagelText = game.add.text(game.world.centerX, 375, "EAT YOUR BAGEL", {fill: '#fff'});
+	eatTheBagelText = game.add.text(game.world.centerX, 325, "EAT YOUR BAGEL", {fill: '#fff'});
 	eatTheBagelText.font = 'Press Start 2P';
 	eatTheBagelText.fontSize = '25px';
 
-	dodgeTheVeggiesText = game.add.text(game.world.centerX, 450, "DODGE THE VEGGIES", {fill: '#fff'});
+	dodgeTheVeggiesText = game.add.text(game.world.centerX, 400, "DODGE THE VEGGIES", {fill: '#fff'});
 	dodgeTheVeggiesText.font = 'Press Start 2P';
 	dodgeTheVeggiesText.fontSize = '25px';
 
@@ -73,16 +74,29 @@ function createText() {
 }
 
 function createSprites() {
-	mike = game.add.sprite(630, 350, 'hungry-mike');
-	fang = game.add.sprite(0, 310, 'hungry-fang');
-	fang.scale.setTo(0.5, 0.5);
-	elizabeth = game.add.sprite(250, 425, 'hungry-elizabeth');
+	mike = game.add.sprite(700, 400, 'hungry-mike');
+	mike.scale.setTo(0.9, 0.9);
+	fang = game.add.sprite(100, 310, 'hungry-fang');
+	fang.scale.setTo(0.45, 0.45);	
+	elizabeth = game.add.sprite(250, 500, 'hungry-elizabeth');
 	elizabeth.scale.setTo(0.6, 0.6);
-	shu = game.add.sprite(400, 450, 'hungry-shu');
-	shu.scale.setTo(1.2, 1.2);
-	game.add.sprite()
-	//bagel = game.add.sprite(605, 425, 'bagel');
-	//bagel.scale.setTo(0.1, 0.1);
+	shu = game.add.sprite(460, 500, 'hungry-shu');
+	shu.scale.setTo(1.2, 1.2);	
+
+	menuSprites = [mike, fang, elizabeth, shu];
+	menuSprites.forEach(function(sprite) {
+		game.physics.enable(sprite, Phaser.Physics.ARCADE);
+		sprite.anchor.setTo(0.5, 0.5);
+		sprite.angle = 325;
+		sprite.body.angularVelocity = 75;
+	});
+	game.time.events.loop(Phaser.Timer.SECOND, changeAngularVelocity, this);
+}
+
+function changeAngularVelocity() {
+	menuSprites.forEach(function(sprite) {
+		sprite.body.angularVelocity *= -1;
+	});
 }
 
 
