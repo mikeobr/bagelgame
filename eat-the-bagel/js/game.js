@@ -3,4 +3,5 @@ game.state.add('load', loadState);
 game.state.add('play', playState);
 game.state.add('win', winState);
 game.state.add('lose', loseState);
+game.state.add('backToMain', backToMainState);
 game.state.start('load');

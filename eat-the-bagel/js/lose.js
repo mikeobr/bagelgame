@@ -41,7 +41,6 @@ var loseState = {
 		game.state.start('load');
 	},
 	endGame: function() {
-		var host = window.location.hostname;
-		window.location.href = 'http://' + host + ':8080';
+		game.state.start('backToMain');
 	}
 }

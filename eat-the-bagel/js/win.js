@@ -32,7 +32,6 @@ var winState = {
 		game.state.start('play');
 	},
 	endGame: function() {
-		var host = window.location.hostname;
-		window.location.href = 'http://' + host + ':8000';
+		game.state.start('backToMain');
 	}
 }
