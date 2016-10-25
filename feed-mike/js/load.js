@@ -1,7 +1,12 @@
 var WebFontConfig = {
-    google: {
-      families: ['Sniglet','Bungee Inline', 'Orbitron', 'Monoton', 'Press Start 2P']
-    }
+
+  active: function() {
+		game.time.events.add(Phaser.Timer.SECOND, loadState.startTheGame, this);
+	},
+
+  google: {
+    families: ['Sniglet','Bungee Inline', 'Orbitron', 'Monoton', 'Press Start 2P']
+  }
 };
 
 var loadState = {
@@ -16,7 +21,7 @@ var loadState = {
     game.load.image('player', '../assets/marissa.png');
   },
 
-  create: function() {
+  startTheGame: function() {
     game.state.start('start');
   }
 }

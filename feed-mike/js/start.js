@@ -3,6 +3,7 @@ var startState = {
     var gameTitleText = game.add.text(game.world.centerX, 200, 'FEED HUNGRY');
     gameTitleText.font = 'Monoton';
     gameTitleText.fontSize = 72;
+
     grd = gameTitleText.context.createLinearGradient(0, 0, 0, gameTitleText.canvas.height);
     grd.addColorStop(0, '#8ED6FF');
     grd.addColorStop(1, '#004CB3');

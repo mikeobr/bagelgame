@@ -37,7 +37,7 @@ var endState = {
 
     var playAgainText = game.add.text(game.world.centerX - 80, game.world.height - 200, "PLAY AGAIN");
     playAgainText.font = 'Orbitron';
-    playAgainText.fontSize = '24';
+    playAgainText.fontSize = 24;
     playAgainText.fill = '#fff';
     playAgainText.anchor.setTo(.5, .5);
     playAgainText.inputEnabled = true;
@@ -45,7 +45,7 @@ var endState = {
 
     var quitText = game.add.text(game.world.centerX + 100, game.world.height - 200, "QUIT");
     quitText.font = 'Orbitron';
-    quitText.fontSize = '24';
+    quitText.fontSize = 24;
     quitText.fill = '#ff0';
     quitText.anchor.setTo(.5, .5);
     quitText.inputEnabled = true;
