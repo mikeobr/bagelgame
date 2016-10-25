@@ -59,13 +59,14 @@ var drive = {
   },
 
   update: function() {
-
-    game.road.tilePosition.y += game.speed;
-    game.physics.arcade.overlap(game.player, this.trafficGroup, this.explode, null, this);
-    game.physics.arcade.overlap(game.player, this.bagelGroup, this.collect, null, this);
-    this.handleControls();
-    this.moveTraffic();
-    this.moveBagels();
+    if(!this.end) { 
+      game.road.tilePosition.y += game.speed;
+      game.physics.arcade.overlap(game.player, this.trafficGroup, this.explode, null, this);
+      game.physics.arcade.overlap(game.player, this.bagelGroup, this.collect, null, this);
+      this.handleControls();
+      this.moveTraffic();
+      this.moveBagels();
+    }
   },
 
   explode: function(player, car) {
@@ -76,6 +77,12 @@ var drive = {
     boom.animations.play('explode', 10, true);
     player.kill();
     game.speed = 0;
+    this.end = true;
+    game.time.events.add(Phaser.Timer.SECOND * 5, this.backToMain, this);
+  },
+
+  backToMain: function() {
+    game.state.start('backToMainState');
   },
 
   collect: function(player, bagel) {
