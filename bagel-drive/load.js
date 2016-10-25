@@ -7,6 +7,7 @@ var load = {
     game.load.image('redcar', 'assets/bluecar.png');
     game.load.image('blackcar', 'assets/blackcar.png');
     game.load.spritesheet('boom', 'assets/boomSpriteSheet.png', 200, 200);
+    
   }, 
 
   create: function() {

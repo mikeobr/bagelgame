@@ -43,7 +43,7 @@ var drive = {
     game.player = game.add.sprite(game.world.width - 200, game.world.height - 250, 'playercar');
     game.player.enableBody = true;
     game.physics.arcade.enable(game.player);
-    game.player.body.collideWorldBounds
+    game.player.body.collideWorldBounds = true;
     this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     this.trafficGroup = game.add.group();
     this.trafficGroup.enableBody = true;
@@ -113,7 +113,6 @@ var drive = {
   spawnCar: function() {
     var color = this.getRandomCar();
     var lane = this.getLane();
-    console.log("LANE");
     var car = this.createCar(this.trafficGroup, lane, color , 10);
     this.traffic.push(car);
   },
