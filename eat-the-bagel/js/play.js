@@ -128,7 +128,10 @@ var playState = {
 
 	update: function() {
 		game.physics.arcade.collide(this.pacman, this.walls);
-		game.physics.arcade.collide(this.baddies, this.walls);
+		baddiesCollideWithWalls = game.physics.arcade.collide(this.baddies, this.walls);
+		if (baddiesCollideWithWalls) {
+			this.randomBaddieDirection();
+		}
 		game.physics.arcade.collide(this.baddies, this.baddies);
 
 		game.physics.arcade.overlap(this.pacman, this.bagel, this.win, null, this);
