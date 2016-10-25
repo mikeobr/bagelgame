@@ -58,6 +58,6 @@ var endState = {
 
   backToMenu: function() {
     var host = window.location.hostname;
-    window.location.href = 'http://' + host + ':8000';
+    window.location.href = 'http://' + host + ':8080';
   }
 }

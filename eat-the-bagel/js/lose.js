@@ -2,8 +2,9 @@ var loseState = {
 	create: function() {
 
 		this.baddies = game.add.group();
-		for (i = 0; i < 50; i ++) {
-			this.baddies.create(game.world.randomX, game.world.randomY, 'baddie');
+		for (i = 0; i < 100; i ++) {
+			baddie = this.baddies.create(game.world.randomX, game.world.randomY, 'baddie');
+			baddie.scale.setTo(2, 2);
 		}
 		game.time.events.loop(Phaser.Timer.SECOND * 0.5, this.tintBaddies, this);
 		youLoseText = game.add.text(game.world.centerX, game.world.centerY,
@@ -41,6 +42,6 @@ var loseState = {
 	},
 	endGame: function() {
 		var host = window.location.hostname;
-		window.location.href = 'http://' + host + ':8000';
+		window.location.href = 'http://' + host + ':8080';
 	}
 }
