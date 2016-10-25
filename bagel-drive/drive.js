@@ -1,15 +1,3 @@
-class Car {
-  constructor(trafficGroup, lane, sprite, speed) {
-    this.direction = lane.DIRECTION; 
-    this.sprite = trafficGroup.create(lane.X, lane.Y, sprite);
-    if (this.direction === 1) {
-      this.sprite.anchor.setTo(0.5, 0.5);
-      this.sprite.angle += 180;
-    }
-    this.speed = lane.DIRECTION  * speed;
-  }
-}
-
 var drive = {
   acceleration: 0.2,
   breakSpeed: 0.8,
@@ -126,7 +114,7 @@ var drive = {
     var color = this.getRandomCar();
     var lane = this.getLane();
     console.log("LANE");
-    var car = new Car(this.trafficGroup, lane, color , 10);
+    var car = this.createCar(this.trafficGroup, lane, color , 10);
     this.traffic.push(car);
   },
 
@@ -165,5 +153,18 @@ var drive = {
         trafficArray.splice(index, 1);
       }
     });
+  },
+
+  createCar: function(trafficGroup, lane, sprite, speed) {
+    var car = {};
+    car.direction = lane.DIRECTION; 
+    car.sprite = trafficGroup.create(lane.X, lane.Y, sprite);
+    if (car.direction === 1) {
+      car.sprite.anchor.setTo(0.5, 0.5);
+      car.sprite.angle += 180;
+    }
+    car.speed = lane.DIRECTION  * speed;
+    return car;
   }
+
 }
