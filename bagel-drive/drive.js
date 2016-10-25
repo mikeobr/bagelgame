@@ -1,7 +1,7 @@
 var drive = {
   acceleration: 0.2,
   breakSpeed: 0.8,
-  turnSpeed: 0,
+  turnSpeed: 1,
 
   DIRECTION: {
     LEFT: -1,
@@ -33,13 +33,17 @@ var drive = {
     },
   },
 
+  score: 0,
+
   traffic: [],
+  bagels: [],
 
   create: function(){
     this.cursors = game.input.keyboard.createCursorKeys();
     
     game.road = game.add.tileSprite(0,0, 800, 1200, 'road');
     this.speedText = game.add.text(16, 16, 'speed: 0', { fontSize: '32px', fill: '#000' });
+    this.scoreText = game.add.text(600, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
     game.player = game.add.sprite(game.world.width - 200, game.world.height - 250, 'playercar');
     game.player.enableBody = true;
     game.physics.arcade.enable(game.player);
@@ -47,15 +51,21 @@ var drive = {
     this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     this.trafficGroup = game.add.group();
     this.trafficGroup.enableBody = true;
+
+    this.bagelGroup = game.add.group();
+    this.bagelGroup.enableBody = true;
     game.time.events.loop(Phaser.Timer.SECOND * 1, this.spawnCar, this);
+    game.time.events.loop(Phaser.Timer.SECOND * 3, this.addBagel, this);
   },
 
   update: function() {
 
     game.road.tilePosition.y += game.speed;
     game.physics.arcade.overlap(game.player, this.trafficGroup, this.explode, null, this);
+    game.physics.arcade.overlap(game.player, this.bagelGroup, this.collect, null, this);
     this.handleControls();
     this.moveTraffic();
+    this.moveBagels();
   },
 
   explode: function(player, car) {
@@ -66,6 +76,11 @@ var drive = {
     boom.animations.play('explode', 10, true);
     player.kill();
     game.speed = 0;
+  },
+
+  collect: function(player, bagel) {
+    bagel.kill();
+    this.score += 1;
   },
 
   handleControls: function() {
@@ -97,17 +112,26 @@ var drive = {
     }
 
    this.speedText.text = 'Speed: ' + game.speed.toFixed(1);
+   this.scoreText.text = 'Bagel: ' + this.score; 
   },
 
   speedChange: function(speedChange) {
     game.speed += speedChange;
     if (game.speed > 0) {
-      this.turnSpeed = Math.min (35, .5 * game.speed);
+      this.turnSpeed = Math.min (50, 1 * game.speed);
     }
   },
 
   turn: function(sideMovement){
     game.player.position.x += sideMovement; 
+  },
+
+  addBagel: function() {
+    var bagelX = game.world.width * Math.random();
+    var bagel = this.bagelGroup.create(bagelX, 0, 'bagel');
+    bagel.scale.x = 2;
+    bagel.scale.y = 2;
+    this.bagels.push(bagel);
   },
 
   spawnCar: function() {
@@ -150,6 +174,16 @@ var drive = {
       if(car.sprite.position.y > game.world.height) {
         car.sprite.destroy();
         trafficArray.splice(index, 1);
+      }
+    });
+  },
+
+  moveBagels: function() {
+    this.bagels.forEach(function(bagel, index, bagelArray) {
+      bagel.position.y += game.speed;
+      if (bagel.position.y > game.world.height) {
+        bagel.destroy();
+        bagelArray.splice(index, 1);
       }
     });
   },
