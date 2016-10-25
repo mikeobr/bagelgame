@@ -131,7 +131,7 @@ var playState = {
     	if (this.livesLeft == 0) {
     		this.livesText.text = 'GAME OVER!';
     		this.player.kill();
-    		this.win();
+    		this.lose();
     	}
 	},
 
@@ -140,7 +140,7 @@ var playState = {
 		this.levelText.text = 'Level: ' + this.level;
 	},
 
-	win: function() {
-    	game.state.start('win');
+	lose: function() {
+    	game.state.start('lose');
   	},
 };
