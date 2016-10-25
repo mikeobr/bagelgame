@@ -7,6 +7,6 @@ var loseState = {
   },
 
   restart: function() {
-    game.state.start('load');
+    game.state.start('play');
   },
 }

@@ -3,11 +3,11 @@ var loadState = {
 	preload: function() {
     	game.load.image('kitchen', 'assets/kitchenBackground800X600.png');
     	game.load.image('table', 'assets/platform.png');
-    	game.load.image('bagel', 'assets/star.png');
-    	game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-    	game.load.image('vege1', 'assets/diamond.png');
-    	game.load.image('vege2', 'assets/baddie.png');
-    	game.load.image('vege3', 'assets/firstaid');
+    	game.load.image('bagel', 'assets/bagel-small.png');
+    	game.load.spritesheet('dude', 'assets/mike-dude.png', 32, 48);
+    	game.load.image('vege1', 'assets/bad-broccoli-small.png');
+    	game.load.image('vege2', 'assets/kale.png');
+    	game.load.image('vege3', 'assets/carrots.png');
 	},
 
 	create: function() {
