@@ -8,7 +8,7 @@ var playState = {
   shootRate: 100,
   bulletSpeed: -200,
   nextBaddieShootTime: 0,
-  baddieShootRate: 1000,
+  baddieShootRate: 2000,
   nextBaddieArriveTime: 0,
   baddieArriveRate: 5000,
 
